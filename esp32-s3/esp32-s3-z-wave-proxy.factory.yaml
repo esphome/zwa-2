@@ -1,0 +1,24 @@
+packages:
+  esp32-s3-z-wave-proxy: !include esp32-s3-z-wave-proxy.yaml
+
+esphome:
+  project:
+    name: esphome.zwa-2-proxy
+    version: dev
+
+improv_serial:
+
+ota:
+  - platform: http_request
+    id: ota_http_request
+
+update:
+  - platform: http_request
+    id: update_http_request
+    name: Firmware
+    source: https://firmware.esphome.io/zwa-2/esp32-s3/manifest.json
+
+http_request:
+
+dashboard_import:
+  package_import_url: github://esphome/zwa-2/esp32-s3/esp32-s3-z-wave-proxy.yaml@main

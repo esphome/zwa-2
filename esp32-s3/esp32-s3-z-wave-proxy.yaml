@@ -1,0 +1,60 @@
+esphome:
+  name: esp32-s3-z-wave-proxy
+  friendly_name: ZWA-2 Z-Wave Proxy
+  min_version: 2025.10.0
+  name_add_mac_suffix: true
+
+esp32:
+  variant: esp32s3
+  flash_size: 8MB
+  framework:
+    type: esp-idf
+
+psram:
+  mode: octal
+  speed: 80MHz
+
+wifi:
+  power_save_mode: none
+  ap:
+
+mdns:
+  services:
+    - service: "_zwave"
+      protocol: "_tcp"
+      port: 6053
+      txt:
+        protocol: "esphome"
+
+api:
+
+logger:
+
+ota:
+  - platform: esphome
+    id: ota_esphome
+
+uart:
+  id: zg23_uart
+  tx_pin: 14
+  rx_pin: 13
+  baud_rate: 115200
+
+zwave_proxy:
+  id: zw_proxy
+
+button:
+  - platform: restart
+    id: restart_btn
+    name: Restart
+    entity_category: diagnostic
+
+  - platform: safe_mode
+    id: safe_mode_btn
+    name: Safe Mode Boot
+    entity_category: diagnostic
+
+  - platform: factory_reset
+    id: factory_reset_btn
+    name: Factory reset
+    entity_category: diagnostic

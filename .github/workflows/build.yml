@@ -19,7 +19,7 @@ jobs:
     uses: esphome/workflows/.github/workflows/build.yml@2025.8.1
     with:
       files: |
-        zwa-2-wifi/esp32-s3-z-wave-proxy.factory.yaml
+        home-assistant-zwa-2/home-assistant-zwa-2.factory.yaml
       esphome-version: dev
       release-summary: ${{ github.event_name == 'release' && github.event.release.body || '' }}
       release-url: ${{ github.event_name == 'release' && github.event.release.html_url || '' }}

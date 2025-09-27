@@ -1,5 +1,5 @@
 packages:
-  esp32-s3-z-wave-proxy: !include esp32-s3-z-wave-proxy.yaml
+  home-assistant-zwa-2: !include home-assistant-zwa-2.yaml
 
 esphome:
   project:
@@ -16,9 +16,9 @@ update:
   - platform: http_request
     id: update_http_request
     name: Firmware
-    source: https://firmware.esphome.io/zwave-proxy/esp32-s3-z-wave-proxy/manifest.json
+    source: https://firmware.esphome.io/zwave-proxy/home-assistant-zwa-2/manifest.json
 
 http_request:
 
 dashboard_import:
-  package_import_url: github://esphome/zwa-2/zwa-2-wifi/esp32-s3-z-wave-proxy.yaml@main
+  package_import_url: github://esphome/zwa-2/home-assistant-zwa-2/home-assistant-zwa-2.yaml@main

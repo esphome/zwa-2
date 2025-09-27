@@ -16,7 +16,7 @@ update:
   - platform: http_request
     id: update_http_request
     name: Firmware
-    source: https://firmware.esphome.io/zwave-proxy/zwa-2-wifi/manifest.json
+    source: https://firmware.esphome.io/zwave-proxy/esp32-s3-z-wave-proxy/manifest.json
 
 http_request:
 

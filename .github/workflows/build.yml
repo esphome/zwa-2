@@ -35,7 +35,7 @@ jobs:
           repository: NabuCasa/zwave-esp-bridge
           latest: true
           fileName: "*"
-          out-file-path: output/zwave-esp-bridge
+          out-file-path: files/zwave-esp-bridge
 
   upload-to-r2:
     if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')

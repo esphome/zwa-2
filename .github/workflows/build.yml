@@ -37,6 +37,13 @@ jobs:
           fileName: "*"
           out-file-path: files/zwave-esp-bridge
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: files
+          name: zwave-esp-bridge
+          retention-days: 1
+
   upload-to-r2:
     if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
     name: Upload to R2

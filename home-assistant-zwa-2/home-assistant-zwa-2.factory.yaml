@@ -16,7 +16,7 @@ update:
   - platform: http_request
     id: update_http_request
     name: Firmware
-    source: https://firmware.esphome.io/zwave-proxy/home-assistant-zwa-2/manifest.json
+    source: https://firmware.esphome.io/ha-connect-zwa-2/home-assistant-zwa-2/manifest.json
 
 http_request:
 

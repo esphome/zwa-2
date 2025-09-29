@@ -73,7 +73,7 @@ jobs:
       - upload-to-r2
     with:
       version: ${{ github.event.release.tag_name }}
-      directory: zwave-proxy
+      directory: ha-connect-zwa-2
       channel: production
       manifest-filename: manifest.json
     secrets: inherit

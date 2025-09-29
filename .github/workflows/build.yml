@@ -52,7 +52,7 @@ jobs:
       - get-usb-uart-release
     uses: esphome/workflows/.github/workflows/upload-to-r2.yml@2025.8.1
     with:
-      directory: zwave-proxy
+      directory: ha-connect-zwa-2
     secrets: inherit
 
   upload-to-release:

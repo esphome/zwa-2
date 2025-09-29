@@ -42,7 +42,7 @@ jobs:
         run: |
           version="${{ steps.download-release.outputs.tag_name }}"
           mkdir -p "output/$version"
-          mv files/zwave-esp-bridge/* "output/$version/"
+          mv zwave-esp-bridge/* "output/$version/"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4

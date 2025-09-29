@@ -31,18 +31,24 @@ jobs:
     steps:
       - name: Fetch firmware files
         uses: robinraju/release-downloader@v1
+        id: download-release
         with:
           repository: NabuCasa/zwave-esp-bridge
           latest: true
           fileName: "*"
-          out-file-path: files/zwave-esp-bridge
+          out-file-path: zwave-esp-bridge
+
+      - name: Move files to version folder
+        run: |
+          version="${{ steps.download-release.outputs.tag_name }}"
+          mkdir -p "output/$version"
+          mv files/zwave-esp-bridge/* "output/$version/"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
-          path: files
+          path: output
           name: zwave-esp-bridge
-          retention-days: 1
 
   upload-to-r2:
     if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')

@@ -1,0 +1,22 @@
+packages:
+  home-assistant-zwa-2-poe: !include home-assistant-zwa-2-poe.yaml
+
+esphome:
+  project:
+    name: esphome.home-assistant-zwa-2-poe
+    version: dev
+
+ota:
+  - platform: http_request
+    id: ota_http_request
+
+update:
+  - platform: http_request
+    id: update_http_request
+    name: Firmware
+    source: https://firmware.esphome.io/ha-connect-zwa-2/home-assistant-zwa-2-poe/manifest.json
+
+http_request:
+
+dashboard_import:
+  package_import_url: github://esphome/zwa-2/home-assistant-zwa-2-poe/home-assistant-zwa-2-poe.yaml@main

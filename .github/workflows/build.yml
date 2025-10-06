@@ -16,7 +16,7 @@ concurrency:
 jobs:
   build-wifi-firmware:
     name: Build Wi-Fi Firmware
-    uses: esphome/workflows/.github/workflows/build.yml@2025.8.1
+    uses: esphome/workflows/.github/workflows/build.yml@2025.10.0
     with:
       files: |
         home-assistant-zwa-2/home-assistant-zwa-2.factory.yaml
@@ -27,7 +27,7 @@ jobs:
 
   build-poe-firmware:
     name: Build PoE Firmware
-    uses: esphome/workflows/.github/workflows/build.yml@2025.8.1
+    uses: esphome/workflows/.github/workflows/build.yml@2025.10.0
     with:
       files: |
         home-assistant-zwa-2-poe/home-assistant-zwa-2-poe.factory.yaml
@@ -42,7 +42,7 @@ jobs:
     needs:
       - build-wifi-firmware
       - build-poe-firmware
-    uses: esphome/workflows/.github/workflows/upload-to-r2.yml@2025.8.1
+    uses: esphome/workflows/.github/workflows/upload-to-r2.yml@2025.10.0
     with:
       directory: ha-connect-zwa-2
     secrets: inherit
@@ -50,7 +50,7 @@ jobs:
   upload-to-release:
     name: Upload to Release
     if: github.event_name == 'release'
-    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.8.1
+    uses: esphome/workflows/.github/workflows/upload-to-gh-release.yml@2025.10.0
     needs:
       - build-wifi-firmware
       - build-poe-firmware
@@ -60,7 +60,7 @@ jobs:
   promote-prod:
     name: Promote to Production
     if: github.event_name == 'release' && github.event.release.prerelease == false
-    uses: esphome/workflows/.github/workflows/promote-r2.yml@2025.8.1
+    uses: esphome/workflows/.github/workflows/promote-r2.yml@2025.10.0
     needs:
       - upload-to-r2
     with:

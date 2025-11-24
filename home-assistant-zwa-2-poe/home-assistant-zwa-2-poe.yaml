@@ -1,7 +1,7 @@
 esphome:
   name: home-assistant-zwa-2-poe
   friendly_name: Home Assistant Connect ZWA-2
-  min_version: 2025.10.0
+  min_version: 2025.12.1
   name_add_mac_suffix: true
 
 esp32:
@@ -34,6 +34,9 @@ mdns:
 api:
 
 logger:
+  # Because the USB interface is taken over to communicate
+  #  with the ZWA-2, send logs to UART0 instead of USB
+  hardware_uart: UART0
 
 ota:
   - platform: esphome
@@ -57,9 +60,25 @@ usb_uart:
 zwave_proxy:
   id: zw_proxy
 
+bluetooth_proxy:
+
 button:
   - platform: restart
     id: restart_btn
     name: Restart
     entity_category: diagnostic
     disabled_by_default: true
+
+switch:
+  - platform: template
+    id: bluetooth_enabled_switch
+    name: Bluetooth Proxy
+    entity_category: config
+    optimistic: true
+    restore_mode: RESTORE_DEFAULT_OFF
+    # BT stack must be initialized before we can call enable/disable actions
+    setup_priority: 275.0
+    turn_on_action:
+      - ble.enable:
+    turn_off_action:
+      - ble.disable:

@@ -61,6 +61,10 @@ zwave_proxy:
   id: zw_proxy
 
 bluetooth_proxy:
+  id: zwa2_bt_proxy
+
+esp32_ble_tracker:
+  id: zwa2_ble_tracker
 
 button:
   - platform: restart
@@ -82,3 +86,21 @@ switch:
       - ble.enable:
     turn_off_action:
       - ble.disable:
+
+select:
+  - platform: template
+    name: Bluetooth Scanner Mode
+    id: scanner_mode
+    options:
+      - "Passive"
+      - "Active"
+    lambda: |-
+      if (id(zwa2_ble_tracker).get_scan_active()) {
+        return {"Active"};
+      } else {
+        return {"Passive"};
+      }
+    set_action:
+      - lambda: |-
+          id(zwa2_bt_proxy).bluetooth_scanner_set_mode(x == "Active");
+      - component.update: scanner_mode
